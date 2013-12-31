@@ -1,1 +1,8 @@
-{"run_list":[]}
+{
+    "run_list":[
+	"nginx"
+    ],
+    "nginx": {
+	"port": 80
+    }
+}
