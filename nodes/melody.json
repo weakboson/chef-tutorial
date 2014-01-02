@@ -1,8 +1,9 @@
 {
     "run_list":[
-	// "ruby",
+	"zsh",
+	"ruby",
+	// "mysql5.6.15"
 	// "nginx"
-	"mysql5.6.15"
     ],
     "nginx": {
 	"port": 80
