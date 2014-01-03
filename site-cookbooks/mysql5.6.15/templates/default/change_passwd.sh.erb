@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+CURRENT_PASS=`sudo awk '{print $NF}' /root/.mysql_secret | tr -d "\n"`
+NEW_PASS="<%= @root_passwd %>"
+MYSQL_PRMT="mysql>"
+CHANGE_PASSWD_SQL="SET PASSWORD FOR root@localhost=PASSWORD('${NEW_PASS}');\n"
+
+expect - <<EOF
+  spawn mysql -uroot -p
+    expect "Enter Password:"
+    send "${CURRENT_PASS}\n"
+    expect $MYSQL_PRMT
+    send "${CHANGE_PASSWD_SQL}\n"
+    expect $MYSQL_PRMT
+    send "exit\n"
+  interact
+EOF
+
+exit 0

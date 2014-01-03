@@ -2,9 +2,15 @@
     "run_list":[
 	"zsh",
 	"ruby",
-	// "mysql5.6.15"
-	// "nginx"
+	"nginx",
+	"mysql5.6.15"
     ],
+    "mysql": {
+    	"innodb_buffer_pool_size": "128M",
+    	"character_set_server": "utf8",
+    	"max_connections": 10,
+	"root_passwd": "gipsy/danger"
+    },
     "nginx": {
 	"port": 80
     }
