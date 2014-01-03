@@ -14,6 +14,10 @@ cookbook_file "/tmp/#{filename}" do
   checksum "#{file_checksum}"
 end
 
+package "libyaml" do
+  action :install
+end
+
 package "ruby" do
   action :install
   provider Chef::Provider::Package::Rpm
