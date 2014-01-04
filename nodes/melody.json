@@ -2,6 +2,7 @@
   "run_list":[
     "zsh",
     "ruby",
+    "gem-bundler",
     "nginx",
     "mysql5.6.15"
   ],
