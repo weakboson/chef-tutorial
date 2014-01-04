@@ -28,6 +28,10 @@ rpms = [
           :rpm => "MySQL-shared-#{VER_RPM}",
           :package => 'MySQL-shared',
           :checksum => '26445e769c8171526a5bcd8043511a47ef7db46dd10f8a7a4fb7ad66d56e7c43'
+        }, {
+          :rpm => "MySQL-devel-#{VER_RPM}",
+          :package => 'MySQL-devel',
+          :checksum => '20f8933f12c169302322d7b82997d8281b58925d7b99c1f735589aee39f46a83'
         }
        ]
 
@@ -55,7 +59,7 @@ end
 template '/usr/my.cnf' do
   user 'root'
   group 'root'
-  mode 0644
+  mode 644
   variables(:character_set_server => node['mysql']['character_set_server'],
             :innodb_buffer_pool_size => node['mysql']['innodb_buffer_pool_size'],
             :max_connections => node['mysql']['max_connections'])
@@ -69,7 +73,7 @@ template '/tmp/change_passwd.sh' do
   only_if 'ls /root/.mysql_secret'
   user 'root'
   group 'root'
-  mode '0700'
+  mode 700
   variables :root_passwd => node['mysql']['root_passwd']
 end
 
@@ -83,7 +87,7 @@ template '/tmp/mysql_secure_installation.sh' do
   only_if 'ls /root/.mysql_secret'
   user 'root'
   group 'root'
-  mode '0700'
+  mode 700
   variables :root_passwd => node['mysql']['root_passwd']
 end
 
