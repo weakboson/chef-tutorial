@@ -10,12 +10,15 @@ http {
   include /etc/nginx/mime.types;
   default_type application/octet-stream;
 
+  upstream unicorn{
+    server unix:/tmp/unicorn.sock;
+  }
   server {
     listen <%= node['nginx']['port'] %>;
-    server_name localhost;
+    server_name melody.local;
     location / {
-      root /user/share/nginx/html;
-      index index.html index.htm;
+      proxy_pass http://unicorn;
     }
+    location = /favicon.ico { access_log off; log_not_found off; }
   }
 }
