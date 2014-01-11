@@ -8,7 +8,6 @@
 #
 include_recipe "ruby"
 
-execute 'gem install bundler' do
-  user 'root'
-  not_if { File.exists? '/usr/bin/bundle' }
+gem_package "bundler" do
+  action :install
 end
